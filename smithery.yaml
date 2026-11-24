@@ -1,0 +1,10 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      L402_TOKEN:
+        type: string
+        description: "Optional pre-paid L402 credential (macaroon:preimage_hex)"
+  commandFunction: |-
+    (config) => ({ command: "npx", args: ["-y", "csc-l402-mcp"], env: config.L402_TOKEN ? { L402_TOKEN: config.L402_TOKEN } : {} })
